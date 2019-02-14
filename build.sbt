@@ -8,6 +8,11 @@ sbtVersion in Global := "1.2.8"
 
 scalaVersion := "2.12.8"
 
+artifactName := { (sv: ScalaVersion, module: ModuleID, artifact: Artifact) =>
+  s"${artifact.name}_${sv.productElement(1)}-${module.revision}.${artifact.extension}"
+
+}
+
 sbtPlugin := true
 
 homepage := Some(url("http://github.com/jamonkko/sbt-jrebel-plugin"))
