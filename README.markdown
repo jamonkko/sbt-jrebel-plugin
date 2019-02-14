@@ -1,11 +1,15 @@
 sbt-jrebel-plugin
 =================
 
+**This is a fork of https://github.com/Gekkio/sbt-jrebel-plugin
+ to add 1.0 support since the original version is not getting support for sbt 1 https://github.com/Gekkio/sbt-jrebel-plugin/issues/7**
+
 ## Introduction
 
-sbt-jrebel-plugin is a plugin for [Simple Build Tool](http://www.scala-sbt.org) that generates configuration files (rebel.xml) for [JRebel](http://www.zeroturnaround.com/jrebel/). A rebel.xml is not always required but is recommended because if you don't have one, JRebel cannot understand the layout of your project and might fail to reload changes. You also cannot reload changes from separate projects.
+sbt-jrebel-plugin is a plugin for [Simple Build Tool](http://www.scala-sbt.org) v1 that generates configuration files (rebel.xml) for [JRebel](http://www.zeroturnaround.com/jrebel/). A rebel.xml is not always required but is recommended because if you don't have one, JRebel cannot understand the layout of your project and might fail to reload changes. You also cannot reload changes from separate projects.
 
-**Supported SBT versions: 0.13.x**
+**Supported SBT versions: 1.X**
+For older sbt use the original one: https://github.com/Gekkio/sbt-jrebel-plugin
 
 ## Features
 
@@ -23,47 +27,42 @@ __You should always disable sbt-jrebel-plugin when publishing artifacts somewher
 
 **Make sure you run sbt with JRebel agent enabled**
 
+Compile (or download the jar) and save it locally under [project]/lib folder
+
 Add the plugin declaration to project/plugins.sbt:
 
-	addSbtPlugin("fi.gekkio.sbtplugins" % "sbt-jrebel-plugin" % "0.10.0")
+	addSbtPlugin("fi.jamonkko.sbtplugins" % "sbt-jrebel-plugin_2.12" % "1.0.0" from "file:///../lib/sbt-jrebel-plugin_2.12-1.0.0.jar",
+  "1.2.8",
+  "2.12.8")
 
 Then include the plugin settings in your project definition:
 
-	seq(jrebelSettings: _*)
+	seq(JRebelPlugin.jrebelSettings: _*)
 
 If you are using [xsbt-web-plugin](https://github.com/earldouglas/xsbt-web-plugin) and want to reload web resources, also add this:
 
 *xsbt-web-plugin >= 2.0:*
 
-	jrebel.webLinks += (sourceDirectory in Compile).value / "webapp"
+	jrebelWebLinks += (sourceDirectory in Compile).value / "webapp"
 
-	(remove .value if using SBT <= 0.13.2)
-
-*xsbt-web-plugin >= 1.0:*
-
-	jrebel.webLinks <++= webappSrc in webapp
-
-*xsbt-web-plugin <= 0.9:*
-
-	jrebel.webLinks <++= webappResources in Compile
 
 ### How do I ...?
 
 #### Disable rebel.xml generation
 
 Project definition:
-`jrebel.enabled := false`
+`jrebelEnabled := false`
 
 or in SBT console:
-`set jrebel.enabled := false`
+`set jrebelEnabled := false`
 
 #### Force rebel.xml generation (regardless of whether you run SBT with JRebel enabled)
 
 Project definition:
-`jrebel.enabled := true`
+`jrebelEnabled := true`
 
 or in SBT console:
-`set jrebel.enabled := true`
+`set jrebelEnabled := true`
 
 ## Cross-project change reloading
 
@@ -77,7 +76,3 @@ Let's say you have two projects, MyLib which is a library project and MyWebApp w
 + Notice that the change is visible in MyWebApp (if the change is reloadable using JRebel). Voilá!
 
 *Do not share rebel.xml files because by default they contain absolute paths which are computer-specific!*
-
-## TODO
-
-Nothing at the moment! _Please report any bugs you might find_

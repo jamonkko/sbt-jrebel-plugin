@@ -1,5 +1,12 @@
 # sbt-jrebel-plugin changelog
 
+## 1.0.0
+
+Forked from Gekkio/sbt-jrebel-plugin and migrated to sbt 1
+
++ Changed groupId/organization to "fi.jamonkko.sbtplugins"
++ No maven release available at least yet
+
 ## 0.10.0 (Sep 2, 2013)
 
 First release for SBT 0.13.

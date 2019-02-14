@@ -1,26 +1,30 @@
-organization := "fi.gekkio.sbtplugins"
+organization := "fi.jamonkko.sbtplugins"
 
 name := "sbt-jrebel-plugin"
 
-version := "0.10.0"
+version := "1.0.0"
+
+sbtVersion in Global := "1.2.8"
+
+scalaVersion := "2.12.8"
 
 sbtPlugin := true
 
-homepage := Some(url("http://github.com/Gekkio/sbt-jrebel-plugin"))
+homepage := Some(url("http://github.com/jamonkko/sbt-jrebel-plugin"))
 
 licenses += ("Apache 2" -> url("http://www.apache.org/licenses/LICENSE-2.0.txt"))
 
 pomExtra := (
   <scm>
-    <connection>scm:git:git@github.com:gekkio/sbt-jrebel-plugin.git</connection>
-    <developerConnection>scm:git:git@github.com:gekkio/sbt-jrebel-plugin.git</developerConnection>
-    <url>git@github.com:gekkio/sbt-jrebel-plugin.git</url>
+    <connection>scm:git:git@github.com:jamonkko/sbt-jrebel-plugin.git</connection>
+    <developerConnection>scm:git:git@github.com:jamonkko/sbt-jrebel-plugin.git</developerConnection>
+    <url>git@github.com:jamonkko/sbt-jrebel-plugin.git</url>
   </scm>
   <developers>
     <developer>
-      <id>gekkio</id>
-      <name>Joonas Javanainen</name>
-      <email>joonas.javanainen@gmail.com</email>
+      <id>jamonkko</id>
+      <name>Jarkko Mönkkönen</name>
+      <email>jarkko.monkkonen@gmail.com</email>
       <timezone>+2</timezone>
     </developer>
   </developers>
