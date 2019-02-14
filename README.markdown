@@ -27,7 +27,7 @@ __You should always disable sbt-jrebel-plugin when publishing artifacts somewher
 
 **Make sure you run sbt with JRebel agent enabled**
 
-Compile (or download the jar) and save it locally under [project]/lib folder
+Compile yourself or download pre-built [sbt-jrebel-plugin_2.12-1.0.0.jar jar](https://github.com/jamonkko/sbt-jrebel-plugin/releases/download/v1.0.0/sbt-jrebel-plugin_2.12-1.0.0.jar). Then save it locally under you project lib directory `[project]/lib` which is the standard default location for [unmanaged dependencies](https://www.scala-sbt.org/1.x/docs/Library-Dependencies.html#Unmanaged+dependencies).
 
 Add the plugin declaration to project/plugins.sbt:
 
