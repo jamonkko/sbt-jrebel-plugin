@@ -2,14 +2,14 @@ sbt-jrebel-plugin
 =================
 
 **This is a fork of https://github.com/Gekkio/sbt-jrebel-plugin
- to add 1.0 support since the original version is not getting support for sbt 1 https://github.com/Gekkio/sbt-jrebel-plugin/issues/7**
+ to add SBT 1.x support since there is no plans for original plugin to get it (see more https://github.com/Gekkio/sbt-jrebel-plugin/issues/7)**
 
 ## Introduction
 
 sbt-jrebel-plugin is a plugin for [Simple Build Tool](http://www.scala-sbt.org) v1 that generates configuration files (rebel.xml) for [JRebel](http://www.zeroturnaround.com/jrebel/). A rebel.xml is not always required but is recommended because if you don't have one, JRebel cannot understand the layout of your project and might fail to reload changes. You also cannot reload changes from separate projects.
 
 **Supported SBT versions: 1.X**
-For older sbt use the original one: https://github.com/Gekkio/sbt-jrebel-plugin
+For older sbt versions please use the original plugin: https://github.com/Gekkio/sbt-jrebel-plugin
 
 ## Features
 
@@ -31,9 +31,7 @@ Compile (or download the jar) and save it locally under [project]/lib folder
 
 Add the plugin declaration to project/plugins.sbt:
 
-	addSbtPlugin("fi.jamonkko.sbtplugins" % "sbt-jrebel-plugin_2.12" % "1.0.0" from "file:///../lib/sbt-jrebel-plugin_2.12-1.0.0.jar",
-  "1.2.8",
-  "2.12.8")
+	addSbtPlugin("fi.jamonkko.sbtplugins" % "sbt-jrebel-plugin_2.12" % "1.0.0" from s"file:///${file("lib").getCanonicalPath}/sbt-jrebel-plugin_2.12-1.0.0.jar")
 
 Then include the plugin settings in your project definition:
 
@@ -45,6 +43,9 @@ If you are using [xsbt-web-plugin](https://github.com/earldouglas/xsbt-web-plugi
 
 	jrebelWebLinks += (sourceDirectory in Compile).value / "webapp"
 
+Available settings are:
+
+	jrebelClasspath, jrebelEnabled, jrebelRebelXml, jrebelWebLinks
 
 ### How do I ...?
 
